@@ -55,6 +55,12 @@ body {
 .gift {
   font-size: 5rem;
   cursor: pointer;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* 🎉 Main */
@@ -63,8 +69,8 @@ body {
   height: 100vh;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* 🔥 shifted upward */
-  padding-top: 80px; /* 🔥 control top spacing */
+  justify-content: flex-start;
+  padding-top: 80px;
   text-align: center;
 }
 
@@ -74,38 +80,22 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* 💌 Message container */
+/* 💌 Message */
 #message {
   width: 90%;
   max-width: 320px;
 }
 
-/* 💖 Styled lines */
 .line {
   opacity: 0;
   margin-top: 12px;
   transition: all 0.8s ease;
 }
 
-.line1 {
-  font-size: 1rem;
-}
-
-.line2 {
-  font-size: 1.2rem;
-  color: #ffe4ec;
-  font-weight: bold;
-}
-
-.line3 {
-  font-size: 1rem;
-  font-style: italic;
-}
-
-.line4 {
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-}
+.line1 { font-size: 1rem; }
+.line2 { font-size: 1.2rem; color: #ffe4ec; font-weight: bold; }
+.line3 { font-size: 1rem; font-style: italic; }
+.line4 { font-size: 1.1rem; letter-spacing: 1px; }
 
 .show {
   opacity: 1;
@@ -115,6 +105,11 @@ h1 {
 </head>
 
 <body>
+
+<!-- 🎵 Audio -->
+<audio id="music">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
 
 <!-- 🐻 Animals -->
 <img class="animal" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" style="left:10%;">
@@ -151,6 +146,9 @@ h1 {
 function openGift() {
   document.getElementById("intro").style.display = "none";
   document.getElementById("main").style.display = "flex";
+
+  // 🎵 Play music on click
+  document.getElementById("music").play();
 
   startTyping();
   startConfetti();
