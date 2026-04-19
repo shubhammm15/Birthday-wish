@@ -15,16 +15,38 @@ body {
   overflow: hidden;
 }
 
-/* 🐻 Animals */
+/* 🐻 Base animal */
 .animal {
   position: absolute;
   width: 45px;
-  animation: float 12s linear infinite;
+  opacity: 0.9;
 }
 
-@keyframes float {
+/* ⬆️ Bottom → Top */
+.float-up {
+  animation: floatUp 10s linear infinite;
+}
+@keyframes floatUp {
   0% { transform: translateY(100vh); }
   100% { transform: translateY(-10vh); }
+}
+
+/* ➡️ Left → Right */
+.float-right {
+  animation: floatRight 12s linear infinite;
+}
+@keyframes floatRight {
+  0% { transform: translateX(-10vw); }
+  100% { transform: translateX(110vw); }
+}
+
+/* ⬅️ Right → Left */
+.float-left {
+  animation: floatLeft 12s linear infinite;
+}
+@keyframes floatLeft {
+  0% { transform: translateX(110vw); }
+  100% { transform: translateX(-10vw); }
 }
 
 /* ✨ Glitter */
@@ -36,7 +58,6 @@ body {
   border-radius: 50%;
   animation: sparkle 5s linear infinite;
 }
-
 @keyframes sparkle {
   0% { transform: translateY(100vh); opacity:0; }
   50% { opacity:1; }
@@ -57,7 +78,6 @@ body {
   cursor: pointer;
   animation: bounce 1.5s infinite;
 }
-
 @keyframes bounce {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -95,7 +115,6 @@ h1 {
 .line1 { font-size: 1rem; }
 .line2 { font-size: 1.2rem; color: #ffe4ec; font-weight: bold; }
 .line3 { font-size: 1rem; font-style: italic; }
-.line4 { font-size: 1.1rem; letter-spacing: 1px; }
 
 .show {
   opacity: 1;
@@ -108,13 +127,22 @@ h1 {
 
 <!-- 🎵 Audio -->
 <audio id="music">
-  <source src="https://github.com/shubhammm15/baby-elephant/blob/main/ReelAudio-14868.mp3" type="audio/mp3">
+  <source src="YOUR_AUDIO_LINK_HERE.mp3" type="audio/mp3">
 </audio>
 
 <!-- 🐻 Animals -->
-<img class="animal" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" style="left:10%;">
-<img class="animal" src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png" style="left:40%;">
-<img class="animal" src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" style="left:70%;">
+
+<!-- ⬆️ Bottom -->
+<img class="animal float-up" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" style="left:10%; animation-delay:0s;">
+<img class="animal float-up" src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png" style="left:50%; animation-delay:3s;">
+
+<!-- ➡️ Left → Right -->
+<img class="animal float-right" src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" style="top:30%; animation-delay:1s;">
+<img class="animal float-right" src="https://cdn-icons-png.flaticon.com/512/616/616430.png" style="top:60%; animation-delay:4s;">
+
+<!-- ⬅️ Right → Left -->
+<img class="animal float-left" src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png" style="top:20%; animation-delay:2s;">
+<img class="animal float-left" src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" style="top:70%; animation-delay:5s;">
 
 <!-- ✨ Glitter -->
 <div class="glitter" style="left:20%;"></div>
@@ -135,7 +163,6 @@ h1 {
     <div class="line line1"></div>
     <div class="line line2"></div>
     <div class="line line3"></div>
-    <div class="line line4"></div>
   </div>
 </div>
 
@@ -147,7 +174,6 @@ function openGift() {
   document.getElementById("intro").style.display = "none";
   document.getElementById("main").style.display = "flex";
 
-  // 🎵 Play music on click
   document.getElementById("music").play();
 
   startTyping();
@@ -158,8 +184,7 @@ function startTyping() {
   let lines = [
     "Wishing you...",
     "fall in love with life again 💖",
-    "every single day ✨",
-    "Stay magical always 🫶"
+    "every single day ✨"
   ];
 
   let i = 0;
